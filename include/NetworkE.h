@@ -1,7 +1,9 @@
+#pragma once
 
 #include <string>
+#include <vector>
 
-#include "AgentObject.h"
+#include "InformationTree.h"
 
 using namespace std;
 
@@ -9,28 +11,23 @@ class NetworkE
 {
 	private:
 		string hostAddress;
-		string enterpriseNumber;
 		string enterpriseName;
-		AgentObject* agentObjectArray;
-		int numberOfAgentObjects;
+		vector<InformationTree*> informationTreeCollection;
 
 	public:
 		NetworkE();
-		NetworkE(string _hostAddress, string _enterpriseNumber, string _enterpriseName, 
-		AgentObject* _agentObjectArray, int _numberOfAgentObjects);
+		NetworkE(string _hostAddress, string _enterpriseName, 
+		vector<InformationTree*> _informationTreeCollection);
 		~NetworkE();
 
 		void setHostAddress(string _hostAddress);
-		void setEnterpriseNumber(string _enterpriseNumber);
 		void setEnterpriseName(string _enterpriseName);
-		void setAgentObjectArray(AgentObject* _agentObjectArray);
-		void setNumberOfAgentObjects(int _numberOfAgentObjects);
-
+		void setInformationTreeCollection(vector<InformationTree*> _informationTreeCollection);
+		
 		string getHostAddress();
-		string getEnterpriseNumber();
 		string getEnterpriseName();
-		AgentObject* getAgentObjectArray();
-		int getNumberOfAgentObjects();
+		vector<InformationTree*> getInformationTreeCollection();
 
+		void addTree(InformationTree* tree);
 		string toString();
 };
