@@ -24,4 +24,10 @@ The fully-featured version of NetworkE allows enterprises to customize the solut
 - Access any value in the network device; provided that the accessing key is specified
 - Access the disk space of any directory on the network device
 
+# Requirements
 
+To run NetworkE on your machine, you are requested to abide by the following requirements:
+
+- Ubuntu 16.xx or 18.xx or 20.xx
+- PostgreSQL 12 (https://www.postgresql.org/download/linux/ubuntu/)
+- C++17
