@@ -1,23 +1,23 @@
-#include "../include/AgentObject.h"
+#include "../include/UtilityPort.h"
 
-AgentObject::AgentObject() : InformationNode()
+UtilityPort::UtilityPort() : InformationNode()
 {}
 
-AgentObject::AgentObject(string _nodeId, string _parentId, string _treeId, string _nodeType, string _nodeValue) 
+UtilityPort::UtilityPort(string _nodeId, string _parentId, string _treeId, string _nodeType, string _nodeValue) 
     : InformationNode(_nodeId, _parentId, _treeId, _nodeType, _nodeValue)
 {}
 
-AgentObject::~AgentObject()
+UtilityPort::~UtilityPort()
 {}
 
-void AgentObject::compute()
+void UtilityPort::compute()
 {
     // This function body will contain the code to access or compute information
     // based on live application in the production environment. For current 
     // use case, it is left empty
 }
 
-string AgentObject::toString()
+string UtilityPort::toString()
 {
     return InformationNode::toString();
 }

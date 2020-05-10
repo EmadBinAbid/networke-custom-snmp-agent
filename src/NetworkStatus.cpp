@@ -1,23 +1,23 @@
-#include "../include/AgentObject.h"
+#include "../include/NetworkStatus.h"
 
-AgentObject::AgentObject() : InformationNode()
+NetworkStatus::NetworkStatus() : InformationNode()
 {}
 
-AgentObject::AgentObject(string _nodeId, string _parentId, string _treeId, string _nodeType, string _nodeValue) 
+NetworkStatus::NetworkStatus(string _nodeId, string _parentId, string _treeId, string _nodeType, string _nodeValue) 
     : InformationNode(_nodeId, _parentId, _treeId, _nodeType, _nodeValue)
 {}
 
-AgentObject::~AgentObject()
+NetworkStatus::~NetworkStatus()
 {}
 
-void AgentObject::compute()
+void NetworkStatus::compute()
 {
     // This function body will contain the code to access or compute information
     // based on live application in the production environment. For current 
     // use case, it is left empty
 }
 
-string AgentObject::toString()
+string NetworkStatus::toString()
 {
     return InformationNode::toString();
 }

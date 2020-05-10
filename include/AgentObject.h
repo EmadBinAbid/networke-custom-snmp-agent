@@ -1,21 +1,18 @@
+#pragma once
 
 #include <string>
 
+#include "InformationNode.h"
+
 using namespace std;
 
-class AgentObject
+class AgentObject : public InformationNode
 {
-    private:
-        string objectId;
-
     public:
         AgentObject();
-        AgentObject(string _objectId);
+        AgentObject(string _nodeId, string _parentId, string _treeId, string _nodeType, string _nodeValue);
         ~AgentObject();
 
-        void setObjectId(string _objectId);
-
-        string getObjectId();
-
+        virtual void compute();
         string toString();
 };
