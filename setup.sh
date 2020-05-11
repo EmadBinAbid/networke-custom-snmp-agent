@@ -14,20 +14,38 @@ echo
 
 echo "Installing dependencies..."
 
-echo "Installing [1 of 4] - snmpd"
-sudo apt install snmpd 
+echo "Installing [1 of 7] - snmpd"
+sudo apt install snmpd
 
-echo "Installing [2 of 4] - snmp"
+echo "Installing [2 of 7] - snmp"
 sudo apt install snmp 
 
-echo "Installing [3 of 4] - libsnmp-dev"
+echo "Installing [3 of 7] - libsnmp-dev"
 sudo apt install libsnmp-dev
 
-echo "Installing [4 of 4] - snmp-mibs-downloader"
+echo "Installing [4 of 7] - snmp-mibs-downloader"
 sudo apt install snmp-mibs-downloader
+
+echo "Installing [5 of 7] - libboost-all-dev"
+sudo apt-get install libboost-all-dev
+
+echo "Installing [6 of 7] - libpq-dev"
+sudo apt-get install libpq-dev
+
+echo "Installing [7 of 7] - libpqxx"
+git clone https://github.com/jtv/libpqxx
+cd ./libpqxx
+./configure --disable-documentation
+sudo make
+sudo make install
 
 echo "[+] Successfully installed dependencies"
 
+echo
+
+# PostgreSQL
+echo "[~] Restarting PostgreSQL..."
+sudo service postgresql restart
 echo
 
 # snmpd.conf
