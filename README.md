@@ -31,3 +31,17 @@ To run NetworkE on your machine, you are requested to abide by the following req
 - Ubuntu 16.xx or 18.xx or 20.xx
 - PostgreSQL 12 (https://www.postgresql.org/download/linux/ubuntu/)
 - C++17
+
+# Dependencies
+
+- snmpd
+- snmp 
+- libsnmp-dev
+- snmp-mibs-downloader
+- libboost-all-dev 
+- libpq-dev 
+- libpqxx
+
+# Points to Remember
+
+- NetworkE uses does not create any specific database user. It uses the default PostgreSQL user. 
