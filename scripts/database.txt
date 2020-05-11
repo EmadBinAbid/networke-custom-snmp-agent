@@ -1,0 +1,27 @@
+# To Create a New Role
+sudo -u postgres createuser --interactive
+
+# To Create a New Database
+sudo -u postgres createdb afinitiTest
+
+# To Switch to PSQL shell
+sudo -u postgres psql
+
+# To Switch to Another Database Inside PSQL shell
+\connect afinitiTest
+
+# To Create a New Table
+CREATE TABLE snmpSignals (
+id serial PRIMARY KEY,
+signalValue decimal NOT NULL,
+signalTime TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+# To Insert Sample Data
+INSERT INTO snmpSignals(signalValue) VALUES(0.0012);
+
+# Sample Select Query
+SELECT * FROM snmpSignals;
+
+# Grant Access
+GRANT ALL ON DATABASE "afinitiTest" TO postgres;
