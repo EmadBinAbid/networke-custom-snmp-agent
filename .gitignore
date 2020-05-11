@@ -34,3 +34,6 @@ src/main
 
 # IDE Junk
 .vscode/
+
+# Custom Program
+libpqxx/
