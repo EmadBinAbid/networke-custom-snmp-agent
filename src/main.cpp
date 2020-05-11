@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "../include/NetworkE.h"
 #include "../include/InformationTree.h"
@@ -13,12 +15,20 @@
 #include "../include/StandardOfCommunication.h"
 #include "../include/UtilityPacket.h"
 #include "../include/UtilityPort.h"
+#include "../include/SnmpConfGenerator.h"
+#include "../include/Program.h"
+#include "../include/System.h"
+#include "../include/PostgreSql.h"
+#include "../include/StaticSoftware.h"
 
 using namespace std;
 
 int main() 
 {
 	cout << "Hello, world!" << endl;
+
+	PostgreSql* p = new PostgreSql();
+	p->connect("test");
 
 	/*
 		This version of NetworkE expects the InformationNode(s) to be added in the 
@@ -35,7 +45,7 @@ int main()
 		9. AgentObject
 	*/
 
-	InformationNode* stdComm = 
+	/*InformationNode* stdComm = 
 		new StandardOfCommunication("1", "0", "1", InformationNodeTypes::agentObject, "1");
 	InformationNode* orgIdStatus = 
 		new OrganizationIdentificationStatus("2", "0", "1", InformationNodeTypes::organizationIdentificationStatus, "3");
@@ -73,6 +83,24 @@ int main()
 	NetworkE* networkE = new NetworkE("localhost", "Afiniti Software Solutions", informationTreesNetworkECollection);
 	
 	cout << networkE->toString() << endl; 
+
+	string versionNumber = "6.1.1";
+	string latestSignalValue = "latestValue";
+	string totalDiskSpace = "totalSpace";
+
+	SnmpConfGenerator* conf = new SnmpConfGenerator();
+	conf->resetConf();
+
+	conf->addCommand("extend .1.3.6.1.4.1.53864.51 sys-os-version /bin/echo '6.1.1'");
+	conf->addCommand("extend .1.3.6.1.4.1.53864.52 sys-os-version /bin/echo '6.1.1'");
+	conf->addCommand("extend .1.3.6.1.4.1.53864.53 space /bin/du -sh /var/log");
+
+	conf->registerConf();
+	
+	cout << "Size is " << System::getDiskSpace("/var/log") << "\n";
+
+	// system("./setup.sh");
+	*/
 
 	return 0;
 }
