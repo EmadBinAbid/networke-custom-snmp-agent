@@ -10,5 +10,5 @@ using namespace pqxx;
 class QueryHandler
 {
     public:
-        static bool handleLatestSignalValueQuery(result queryResult);
+        static float handleLatestSignalValueQuery(result queryResult);
 };
