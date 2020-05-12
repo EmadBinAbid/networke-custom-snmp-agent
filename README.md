@@ -96,7 +96,7 @@ Overall in the entire application development, I used functional testing, accept
 
 ## Breakdown of Tasks
 
-It took all together three days (including R&D) to come up with a mini-product, NetworkE, that extends the NET-SNMP agent. The breakdown of tasks is as follows.
+It took all together a little more than two days (including R&D) to come up with a mini-product, NetworkE, that extends the NET-SNMP agent. The breakdown of tasks is as follows.
 
 - `05 hrs` -> R&D about SNMP and NET-SNMP. One of the toughest tasks in the entire process.
 - `07 hrs` -> Figuring out how to extend NET-SNMP to run custom programs.
