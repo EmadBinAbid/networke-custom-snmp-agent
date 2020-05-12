@@ -92,6 +92,7 @@ Furthermore, the current NetworkE program flow in `src/main.cpp` does not build 
 
 ## Testing Methodology
 
+Overall in the entire application development, I used functional testing, acceptance testing, and design testing. This was all a manual process. I did not write any unit tests for now. 
 
 ## Breakdown of Tasks
 
@@ -104,7 +105,7 @@ It took all together three days (including R&D) to come up with a mini-product, 
 - `10 hrs` -> C++ application implementation
 - `02 hrs` -> Minor tweakings and launching the product
 
-One of the reasons for choosing OOP design methodology was the application scalability and code resuability. The reason for choosing C++ as the product programming language was to cater to high performance and speed latencies. C also provides high speed latencies but the reason for not choosing C was to avoid unfavourable circumstances of dealing with old, complex, and non-flexible OOP scenarios. Hence, C++ was the ideal choice. If there were no C++, I would have chosen Python because of its easy syntax and ever-growing support community. 
+One of the reasons for choosing OOP design methodology was the application scalability and code resuability. The reason for choosing C++ as the product programming language was to cater to high performance and speed. C also provides high speed efficiencies but the reason for not choosing C was to avoid unfavourable circumstances of dealing with old, complex, and non-flexible OOP scenarios. Hence, C++ was the ideal choice. If there were no C++, I would have chosen Python because of its easy syntax and ever-growing support community. 
 
 ## A Better Approach
 
