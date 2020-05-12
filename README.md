@@ -42,6 +42,13 @@ To run NetworkE on your machine, you are requested to abide by the following req
 - libpq-dev 
 - libpqxx
 
+# Setup and Configuration
+
+
+
 # Points to Remember
 
 - NetworkE uses does not create any specific database user. It uses the default PostgreSQL user. 
+
+# What Could Possibly Go Wrong?
+
