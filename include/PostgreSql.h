@@ -12,6 +12,12 @@ using namespace pqxx;
 
 class PostgreSql : public Program
 {
+    private:
+        connection* dbConnection;
     public:
         bool connect(string connectionString);
+        bool executeQuery(string sqlQuery, bool (*onSuccessCallback)(result));
+        bool addTable(string tableName);
+        bool addColumn(string columnName);
+        bool addRow(string value);
 };
