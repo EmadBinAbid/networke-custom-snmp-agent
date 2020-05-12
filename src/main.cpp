@@ -136,24 +136,35 @@ int main(int argc, char *argv[])
 	NetworkE* networkE = new NetworkE("localhost", "Afiniti Software Solutions", informationTreesNetworkECollection);
 	
 	cout << networkE->toString() << endl; 
-
-	string versionNumber = "6.1.1";
-	string latestSignalValue = "latestValue";
-	string totalDiskSpace = "totalSpace";
-
-	SnmpConfGenerator* conf = new SnmpConfGenerator();
-	conf->resetConf();
-
-	conf->addCommand("extend .1.3.6.1.4.1.53864.51 sys-os-version /bin/echo '6.1.1'");
-	conf->addCommand("extend .1.3.6.1.4.1.53864.52 sys-os-version /bin/echo '6.1.1'");
-	conf->addCommand("extend .1.3.6.1.4.1.53864.53 space /bin/du -sh /var/log");
-
-	conf->registerConf();
-	
-	cout << "Size is " << System::getDiskSpace("/var/log") << "\n";
-
-	// system("./setup.sh");
 	*/
+
+	if (argc == 1)
+	{
+		StaticSoftware* sSoftware = new StaticSoftware();
+		string versionNumber = sSoftware->getVersionNumber();
+		
+		PostgreSql* postgres = new PostgreSql();
+		postgres->connect("dbname = afinitiTest user = postgres password = password \
+			hostaddr = 127.0.0.1 port = 5432");
+		float signalValue = postgres->executeQuery("SELECT signalValue from snmpSignals ORDER BY signalTime DESC limit 1", 
+			QueryHandler::handleLatestSignalValueQuery);
+		string latestSignalValue = to_string(signalValue);
+		
+		string totalDiskSpace = to_string((int)System::getDiskSpace("/var/log"));
+
+		SnmpConfGenerator* conf = new SnmpConfGenerator();
+		conf->resetConf();
+
+		conf->addCommand("extend .1.3.6.1.4.1.53864.51 version-number /bin/echo '" + versionNumber + "'");
+		conf->addCommand("extend .1.3.6.1.4.1.53864.52 signal-value /bin/echo '" + latestSignalValue + "'");
+		conf->addCommand("extend .1.3.6.1.4.1.53864.53 disk-space /bin/echo '" + totalDiskSpace + "'");
+
+		conf->registerConf();
+
+		system("sudo cp ./snmpd.conf /etc/snmp/");
+		
+		system("./setup.sh");
+	}
 
 	return 0;
 }
