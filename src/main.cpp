@@ -2,6 +2,7 @@
 #include <vector>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
 
 #include "../include/NetworkE.h"
 #include "../include/InformationTree.h"
@@ -20,16 +21,68 @@
 #include "../include/System.h"
 #include "../include/PostgreSql.h"
 #include "../include/StaticSoftware.h"
+#include "../include/QueryHandler.h"
 
 using namespace std;
 
-int main() 
+int main(int argc, char *argv[])
 {
-	cout << "Hello, world!" << endl;
+	// ###################################################################################
+	// This part of the program writes the exact code to output the results as requested.
+	// ###################################################################################
 
-	PostgreSql* p = new PostgreSql();
-	p->connect("test");
+	if (argc == 2)
+	{
+		/*
+		-> First Part - Return a Static String
+		-> This can be done in two ways as follows:
+			1. By directly accessing system command of /bin/du -> To check this, just add 
+			[ extend .1.3.6.1.4.1.53864.51 sys-os-version /bin/echo '6.1.1' ] at the end of 
+			snmpd.conf located at /etc/snmp/
 
+			2. By programmatically accessing the result -> Please see the program execution
+			below
+		*/
+		StaticSoftware* sSoftware = new StaticSoftware();
+		cout << "Version  Number = " << sSoftware->getVersionNumber() << endl;
+	}
+
+	if (argc == 3)
+	{
+		/*
+		-> Second Part - Return the total disk space of /var/log
+		*/
+
+		PostgreSql* postgres = new PostgreSql();
+		postgres->connect("dbname = afinitiTest user = postgres password = password \
+			hostaddr = 127.0.0.1 port = 5432");
+		postgres->executeQuery("SELECT signalValue from snmpSignals ORDER BY signalTime DESC limit 1", 
+			QueryHandler::handleLatestSignalValueQuery);	
+	}
+
+	if (argc == 4)
+	{
+		/*
+		-> Third Part - Return the total disk space of /var/log
+		-> This can be done in two ways as follows:
+			1. By directly accessing system command of /bin/du -> To check this, just add 
+			[ extend .1.3.6.1.4.1.53864.53 space /bin/du -sh /var/log ] at the end of 
+			snmpd.conf located at /etc/snmp/
+
+			2. By programmatically accessing the result -> Please see the program execution
+			below
+		*/
+
+		// By programmatically accessing the result
+		cout << "Total Disk Space = " << System::getDiskSpace("/var/log") << "\n";
+	}
+	
+	// ###################################################################################
+	// This part of the program handles generic cases and is fully-featured and scalable.
+	// You can create every possibility and add multiple commands as well to access more 
+	// than 3 resources in the system. For further information, please see README.md.
+	// ###################################################################################
+	
 	/*
 		This version of NetworkE expects the InformationNode(s) to be added in the 
 		InformationTree(s) on the following order
