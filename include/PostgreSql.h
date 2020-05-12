@@ -16,7 +16,7 @@ class PostgreSql : public Program
         connection* dbConnection;
     public:
         bool connect(string connectionString);
-        bool executeQuery(string sqlQuery, bool (*onSuccessCallback)(result));
+        float executeQuery(string sqlQuery, float (*onSuccessCallback)(result));
         bool addTable(string tableName);
         bool addColumn(string columnName);
         bool addRow(string value);

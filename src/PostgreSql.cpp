@@ -23,16 +23,14 @@ bool PostgreSql::connect(string connectionString)
     }
 }
 
-bool PostgreSql::executeQuery(string sqlQuery, bool (*onSuccessCallback)(result))
+float PostgreSql::executeQuery(string sqlQuery, float (*onSuccessCallback)(result))
 {
     try
     {
         nontransaction nonTransactionalQuery(*(this->dbConnection));
         result queryResult( nonTransactionalQuery.exec( sqlQuery.c_str() ));
 
-        onSuccessCallback(queryResult);
-        
-        cout << "Operation done successfully" << endl;
+        return onSuccessCallback(queryResult);
     }
     catch (const exception &e) 
     {
