@@ -40,17 +40,16 @@ sudo make
 sudo make install
 
 echo "[+] Successfully installed dependencies"
-
-echo
-
-# PostgreSQL
-echo "[~] Restarting PostgreSQL..."
-sudo service postgresql restart
 echo
 
 # snmpd.conf
 echo "[~] Updating snmpd.conf..."
 sudo cp ./snmpd.conf /etc/snmp
+echo
+
+# PostgreSQL
+echo "[~] Restarting PostgreSQL..."
+sudo service postgresql restart
 echo
 
 # Simple Network Management Protocol (SNMP) service start
